@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>frog | Data Asset Library</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="css/styles.css"/>
+</head>
+<body>
+
+<!-- Ambient layers -->
+<div class="o1 orb"></div>
+<div class="o2 orb"></div>
+<div class="o3 orb"></div>
+<div class="grid-bg"></div>
+<div class="scanline"></div>
+<canvas id="canvas"></canvas>
+
+<!-- NAV -->
+<nav class="nav" id="mainNav">
+  <div class="nav-inner">
+    <div class="logo" aria-label="frog brand">
+      <img src="assets/frog_logos/friedolin_WB.png" alt="Friedolin symbol" class="logo-symbol"/>
+      <img src="assets/frog_logos/frog-endorsed-logo-horizontal-white.png" alt="frog endorsed logo" class="logo-wordmark"/>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <h1><span class="grad">Asset Intelligence</span><br/>Library</h1>
+  <p class="hero-sub">Welcome to your AI asset hub. Explore our curated collection of Gen AI, Agentic AI, and next-gen technology solutions — designed to help you innovate faster, solve real problems, and deliver exceptional impact on your projects.</p>
+  <div class="hero-stats">
+    <div><div class="hs-val"><span class="ctr" data-t="10">0</span>+</div><div class="hs-lbl">AI Assets</div></div>
+    <div><div class="hs-val"><span class="ctr" data-t="8">0</span></div><div class="hs-lbl">Tech Domains</div></div>
+    <div><div class="hs-val"><span class="ctr" data-t="6">0</span></div><div class="hs-lbl">Clients</div></div>
+  </div>
+  <div class="scroll-ind"><span>Scroll to explore</span><div class="scroll-line"></div></div>
+</section>
+
+<!-- COMMAND BAR -->
+<div class="cmd-section" id="assets">
+  <div class="cmd-bar" id="cmdBar">
+    <span class="material-symbols-outlined search-ic">search</span>
+    <input id="searchInput" type="text" placeholder="Search assets… try 'agentic', 'azure', 'python'" autocomplete="off"/>
+    <span class="kbd-hint">⌘K</span>
+    <div class="chips" id="chips">
+      <div class="chip on" data-f="all">All</div>
+      <div class="chip" data-f="gen-ai">Gen AI</div>
+      <div class="chip" data-f="agentic-ai">Agentic AI</div>
+      <div class="chip" data-f="data">Data & Analytics</div>
+      <div class="chip" data-f="cloud">Cloud / Azure</div>
+      <div class="chip" data-f="automation">Automation</div>
+    </div>
+  </div>
+</div>
+
+<!-- ASSET SECTION HEADER -->
+<div class="sec-hdr">
+  <div class="sec-lbl">Asset Catalogue</div>
+  <div class="sec-ttl">Explore the Library</div>
+</div>
+
+<!-- ASSET GRID -->
+<section class="assets-section">
+  <div class="assets-grid" id="assetsGrid"></div>
+</section>
+
+<!-- ASSET DETAIL MODAL -->
+<div class="asset-modal" id="assetModal" aria-hidden="true">
+  <div class="asset-modal-backdrop" id="assetModalBackdrop"></div>
+  <article class="asset-modal-panel" role="dialog" aria-modal="true" aria-labelledby="assetModalTitle">
+    <button class="asset-modal-close" id="assetModalClose" aria-label="Close asset details">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <div class="asset-modal-body" id="assetModalBody"></div>
+  </article>
+</div>
+
+<!-- TICKER TOP -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerTop">
+    <span class="ticker-item"><span class="dot"></span>Gen AI</span>
+    <span class="ticker-item"><span class="dot"></span>Agentic AI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure OpenAI</span>
+    <span class="ticker-item"><span class="dot"></span>RAG Architecture</span>
+    <span class="ticker-item"><span class="dot"></span>LangChain</span>
+    <span class="ticker-item"><span class="dot"></span>AutoGen</span>
+    <span class="ticker-item"><span class="dot"></span>CrewAI</span>
+    <span class="ticker-item"><span class="dot"></span>Python</span>
+    <span class="ticker-item"><span class="dot"></span>GPT-4o</span>
+    <span class="ticker-item"><span class="dot"></span>Vector Search</span>
+    <span class="ticker-item"><span class="dot"></span>Power BI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure ML</span>
+    <span class="ticker-item"><span class="dot"></span>Terraform</span>
+    <span class="ticker-item"><span class="dot"></span>FastAPI</span>
+    <span class="ticker-item"><span class="dot"></span>Multi-Agent Orchestration</span>
+    <span class="ticker-item"><span class="dot"></span>Gen AI</span>
+    <span class="ticker-item"><span class="dot"></span>Agentic AI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure OpenAI</span>
+    <span class="ticker-item"><span class="dot"></span>RAG Architecture</span>
+    <span class="ticker-item"><span class="dot"></span>LangChain</span>
+    <span class="ticker-item"><span class="dot"></span>AutoGen</span>
+    <span class="ticker-item"><span class="dot"></span>CrewAI</span>
+    <span class="ticker-item"><span class="dot"></span>Python</span>
+    <span class="ticker-item"><span class="dot"></span>GPT-4o</span>
+    <span class="ticker-item"><span class="dot"></span>Vector Search</span>
+    <span class="ticker-item"><span class="dot"></span>Power BI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure ML</span>
+    <span class="ticker-item"><span class="dot"></span>Terraform</span>
+    <span class="ticker-item"><span class="dot"></span>FastAPI</span>
+    <span class="ticker-item"><span class="dot"></span>Multi-Agent Orchestration</span>
+  </div>
+</div>
+
+<!-- CAPABILITIES HEADER -->
+<div class="sec-hdr" id="capabilities">
+  <div class="sec-lbl">Technology Stack</div>
+  <div class="sec-ttl">Capabilities &amp; Domains</div>
+</div>
+
+<!-- CAPABILITIES GRID -->
+<section class="assets-section" style="padding-bottom:1.5rem">
+  <div class="cap-grid" id="capGrid"></div>
+</section>
+
+<!-- TICKER BOTTOM -->
+<div class="ticker">
+  <div class="ticker-inner" id="tickerBottom">
+    <span class="ticker-item"><span class="dot"></span>Gen AI</span>
+    <span class="ticker-item"><span class="dot"></span>Agentic AI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure OpenAI</span>
+    <span class="ticker-item"><span class="dot"></span>RAG Architecture</span>
+    <span class="ticker-item"><span class="dot"></span>LangChain</span>
+    <span class="ticker-item"><span class="dot"></span>AutoGen</span>
+    <span class="ticker-item"><span class="dot"></span>CrewAI</span>
+    <span class="ticker-item"><span class="dot"></span>Python</span>
+    <span class="ticker-item"><span class="dot"></span>GPT-4o</span>
+    <span class="ticker-item"><span class="dot"></span>Vector Search</span>
+    <span class="ticker-item"><span class="dot"></span>Power BI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure ML</span>
+    <span class="ticker-item"><span class="dot"></span>Terraform</span>
+    <span class="ticker-item"><span class="dot"></span>FastAPI</span>
+    <span class="ticker-item"><span class="dot"></span>Multi-Agent Orchestration</span>
+    <span class="ticker-item"><span class="dot"></span>Gen AI</span>
+    <span class="ticker-item"><span class="dot"></span>Agentic AI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure OpenAI</span>
+    <span class="ticker-item"><span class="dot"></span>RAG Architecture</span>
+    <span class="ticker-item"><span class="dot"></span>LangChain</span>
+    <span class="ticker-item"><span class="dot"></span>AutoGen</span>
+    <span class="ticker-item"><span class="dot"></span>CrewAI</span>
+    <span class="ticker-item"><span class="dot"></span>Python</span>
+    <span class="ticker-item"><span class="dot"></span>GPT-4o</span>
+    <span class="ticker-item"><span class="dot"></span>Vector Search</span>
+    <span class="ticker-item"><span class="dot"></span>Power BI</span>
+    <span class="ticker-item"><span class="dot"></span>Azure ML</span>
+    <span class="ticker-item"><span class="dot"></span>Terraform</span>
+    <span class="ticker-item"><span class="dot"></span>FastAPI</span>
+    <span class="ticker-item"><span class="dot"></span>Multi-Agent Orchestration</span>
+  </div>
+</div>
+
+<!-- CLIENT LOGOS CAROUSEL -->
+<div class="sec-hdr" id="clients">
+  <div class="sec-lbl">Trusted By</div>
+  <div class="sec-ttl">Our Clients</div>
+</div>
+
+<section class="assets-section" style="padding-bottom:4rem">
+  <div class="clients-combined">
+    <div class="clients-logos">
+      <div class="logo-grid-network" id="logoGrid">
+        <div class="logo-node" data-index="0"><img src="assets/client_logos/accor.png" alt="Accor" class="client-logo"/></div>
+        <div class="logo-node" data-index="1"><img src="assets/client_logos/barclays.png" alt="Barclays" class="client-logo"/></div>
+        <div class="logo-node" data-index="2"><img src="assets/client_logos/natwest.png" alt="NatWest" class="client-logo"/></div>
+        <div class="logo-node" data-index="3"><img src="assets/client_logos/stc.png" alt="STC" class="client-logo"/></div>
+        <div class="logo-node" data-index="4"><img src="assets/client_logos/sw.jpeg" alt="SW" class="client-logo"/></div>
+      </div>
+    </div>
+    <div class="clients-feedback">
+      <div class="feedback-carousel" id="feedbackCarousel">
+        <div class="feedback-card active">
+          <div class="feedback-quote">"The asset library has transformed how we deploy AI solutions. Incredible toolkit."</div>
+          <div class="feedback-author">— Leadership, Accor</div>
+        </div>
+        <div class="feedback-card">
+          <div class="feedback-quote">"Best resource we've found for enterprise AI integration. Highly recommended."</div>
+          <div class="feedback-author">— Tech Team, Barclays</div>
+        </div>
+        <div class="feedback-card">
+          <div class="feedback-quote">"Accelerated our AI roadmap by months. Professional, intuitive, powerful."</div>
+          <div class="feedback-author">— Innovation Lab, NatWest</div>
+        </div>
+        <div class="feedback-card">
+          <div class="feedback-quote">"Exactly what we needed. Seamless integration with our existing systems."</div>
+          <div class="feedback-author">— CTO Office, STC</div>
+        </div>
+        <div class="feedback-card">
+          <div class="feedback-quote">"Outstanding support and comprehensive documentation. A game-changer."</div>
+          <div class="feedback-author">— Development Team, SW</div>
+        </div>
+      </div>
+      <div class="feedback-dots" id="feedbackDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT SECTION HEADER -->
+<div class="sec-hdr" id="contact-us">
+  <div class="sec-lbl">Meet the Team</div>
+  <div class="sec-ttl">Key Contacts</div>
+</div>
+
+<!-- CONTACT GRID -->
+<section class="assets-section" style="padding-bottom:6rem">
+  <div class="contact-grid">
+
+    <div class="contact-card">
+      <img src="assets/Ishan-Babbar_0003_pp_sq.JPG" alt="Ishan Babbar" class="cc-avatar"/>
+      <div class="cc-name">Ishan Babbar</div>
+      <div class="cc-role">AI Lead</div>
+      <div class="cc-dept">frog Data</div>
+      <div class="cc-tags">
+        <span class="tag ag">Agentic AI</span><span class="tag ga">Gen AI</span><span class="tag az">Azure</span>
+      </div>
+      <div class="cc-actions">
+        <a href="mailto:ishan.babbar@frog.co" class="act sec"><span class="material-symbols-outlined">mail</span>Email</a>
+        <a href="#" class="act sec"><span class="material-symbols-outlined">chat</span>Teams</a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-avatar"><span class="material-symbols-outlined">person</span></div>
+      <div class="cc-name">Emma Crawford</div>
+      <div class="cc-role">Senior AI Engineer</div>
+      <div class="cc-dept">frog Data</div>
+      <div class="cc-tags">
+        <span class="tag lc">LangChain</span><span class="tag py">Python</span><span class="tag ga">GPT-4o</span>
+      </div>
+      <div class="cc-actions">
+        <a href="mailto:emma.crawford@frog.co" class="act sec"><span class="material-symbols-outlined">mail</span>Email</a>
+        <a href="#" class="act sec"><span class="material-symbols-outlined">chat</span>Teams</a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-avatar"><span class="material-symbols-outlined">person</span></div>
+      <div class="cc-name">Rudy Kotra</div>
+      <div class="cc-role">AI Engineer</div>
+      <div class="cc-dept">frog Data</div>
+      <div class="cc-tags">
+        <span class="tag re">React</span><span class="tag az">Azure ML</span><span class="tag py">Python</span>
+      </div>
+      <div class="cc-actions">
+        <a href="mailto:rudy.kotra@frog.co" class="act sec"><span class="material-symbols-outlined">mail</span>Email</a>
+        <a href="#" class="act sec"><span class="material-symbols-outlined">chat</span>Teams</a>
+      </div>
+    </div>
+
+    <div class="contact-card">
+      <div class="cc-avatar"><span class="material-symbols-outlined">person</span></div>
+      <div class="cc-name">Dean Lanzman</div>
+      <div class="cc-role">Head of frog Data</div>
+      <div class="cc-dept">frog Data</div>
+      <div class="cc-tags">
+        <span class="tag py">Python</span><span class="tag az">Power BI</span><span class="tag oa">OpenAI</span>
+      </div>
+      <div class="cc-actions">
+        <a href="mailto:dean.lanzman@frog.co" class="act sec"><span class="material-symbols-outlined">mail</span>Email</a>
+        <a href="#" class="act sec"><span class="material-symbols-outlined">chat</span>Teams</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer" id="contact">
+  <div class="footer-inner">
+    <div class="footer-brand">frog Data UK - Part of frog UK</div>
+    <div class="footer-copy">© 2026 frog Customer Data &amp; Technology — Internal Use Only</div>
+  </div>
+</footer>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>
