@@ -96,6 +96,28 @@ const ASSETS = [
  tags: [{ l: "Gen AI", c: "ga" }, { l: "Selenium", c: "" }, { l: "Python", c: "py" }, { l: "Azure DevOps", c: "az" }],
  links: { demo: "#", deck: "#", video: "#" },
  contact: { name: "Rudy Kotra", ini: "RK", role: "AI Engineer" },
+ },
+ {
+ id: 10,
+ title: "Voice of the Customer 2.0",
+ desc: "Real-time GenAI insight engine turning social and review signals into actionable customer intelligence for strategy and operations.",
+ category: "data", catLabel: "Data & Analytics", status: "live",
+ img: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+ tags: [],
+ techStack: {
+ frontend: [
+ { name: "Power BI", logo: "assets/tech_logos/Power-BI-Logo.png" }
+ ],
+ backend: [
+ { name: "OpenAI", logo: "assets/tech_logos/openai-icon.png" },
+ { name: "Python", logo: "assets/tech_logos/python.webp" },
+ { name: "Export Comments", logo: "assets/tech_logos/export_comments.png" }
+ ]
+ },
+ links: { demo: "https://app.powerbi.com/groups/me/reports/4e7eb987-d50c-45c8-bd73-500cc65cd37b/ReportSectionb83a6681526a520a0631?ctid=76a2ae5a-9f00-4f6b-95ed-5d33d77c4d61&experience=power-bi", deck: "https://capgemini.sharepoint.com/:p:/r/sites/frogTech/Shared%20Documents/frog%20Data/Pillars/Marketing%20%26%20PR/Make%20your%20Mark%20Awards/Make%20your%20mark%20-%20MOC.pptx?d=wd5b42e5e664546b8a06babfaed574963&csf=1&web=1&e=giaSMn", repo: "#" },
+ moreAbout: "The Ministry of Culture needed a clearer, more mature view of visitor sentiment across Saudi Arabia's cultural landmarks and events. We built a tailored Voice of Customer platform that analyses 21,000+ data points from five online sources (Instagram, TikTok, Google Reviews, TripAdvisor, and X) across 30 sites over two years. A robust preprocessing pipeline tags feedback by site, enabling deep regional and location-level drill-down. Using pre-trained sentiment and emotion models, plus custom thematic analysis and GenAI-assisted workflows for translation, theme discovery, and outlier detection, we turned unstructured multilingual feedback into actionable insight. Outputs are delivered through a custom Power BI dashboard with rich filtering and embedded Copilot support, helping senior stakeholders explore trends faster and make more evidence-based decisions.",
+ contact: { name: "Emma Crawford", ini: "EC", role: "Senior AI Engineer" },
+ updated: "2026-04-27"
  }
 ];
 
@@ -119,6 +141,40 @@ function buildActionLinks(links) {
  ].join('');
 }
 
+function buildTechStackLogosHTML(techStack, variant = 'card') {
+ if (variant === 'card') {
+ const items = [...(techStack.backend || []), ...(techStack.frontend || [])];
+ const logos = items.map(item => `
+ <div class="tech-logo-chip ${variant}">
+	 <img src="${item.logo}" alt="${item.name} logo" loading="lazy"/>
+	 <span>${item.name}</span>
+ </div>`).join('');
+
+ return `
+ <div class="tech-stack ${variant}">
+	 <div class="tech-group-label">Tech Stack</div>
+	 <div class="tech-logo-row ${variant}">${logos}</div>
+ </div>`;
+ }
+
+ const groupHTML = (label, items) => {
+ if (!items?.length) return '';
+ const logos = items.map(item => `
+ <div class="tech-logo-chip ${variant}">
+	 <img src="${item.logo}" alt="${item.name} logo" loading="lazy"/>
+	 <span>${item.name}</span>
+ </div>`).join('');
+
+ return `
+ <div class="tech-group ${variant}">
+	 <div class="tech-group-label">${label}</div>
+	 <div class="tech-logo-row ${variant}">${logos}</div>
+ </div>`;
+ };
+
+ return `<div class="tech-stack ${variant}">${groupHTML('Back-end', techStack.backend)}${groupHTML('Front-end', techStack.frontend)}</div>`;
+}
+
 // ── Render Assets ──
 function renderAssets(list) {
  const grid = document.getElementById('assetsGrid');
@@ -131,6 +187,7 @@ function renderAssets(list) {
  const actionHTML = buildActionLinks(a.links);
 
  const tagsHTML = a.tags.map(t => `<span class="tag ${t.c}">${t.l}</span>`).join('');
+ const techStackHTML = a.techStack ? buildTechStackLogosHTML(a.techStack, 'card') : `<div class="tags">${tagsHTML}</div>`;
  const isWip = a.status === 'wip';
 
  const el = document.createElement('div');
@@ -152,8 +209,8 @@ function renderAssets(list) {
  <div class="card-body">
  <div class="card-title">${a.title}</div>
  <div class="card-desc">${a.desc}</div>
- <div class="tags">${tagsHTML}</div>
  <div class="actions">${actionHTML}</div>
+ ${techStackHTML}
  <div class="card-foot">
  <div class="c-contact">
  <div class="c-avatar">${a.contact.ini}</div>
@@ -186,6 +243,9 @@ function initAssetModal() {
  const openModal = (asset) => {
  if (!asset) return;
  const tagsHTML = asset.tags.map(t => `<span class="tag ${t.c}">${t.l}</span>`).join('');
+ const techStackHTML = asset.techStack
+ ? buildTechStackLogosHTML(asset.techStack, 'modal')
+ : `<div class="tags">${tagsHTML || '<span class="tag">TBD</span>'}</div>`;
  const actionsHTML = buildActionLinks(asset.links);
  const statusText = asset.status === 'wip' ? 'In Progress' : 'Live';
  const ownerRole = asset.contact?.role || 'Asset Owner';
@@ -202,35 +262,31 @@ function initAssetModal() {
 	 </div>
  </div>
  <div class="asset-modal-content">
-	 <h3 class="asset-modal-title" id="assetModalTitle">${asset.title}</h3>
+	 <div class="asset-modal-head-row">
+		 <h3 class="asset-modal-title" id="assetModalTitle">${asset.title}</h3>
+		 <div class="asset-modal-owner-inline">
+			 <div class="c-avatar">${ownerIni}</div>
+			 <div>
+				 <div class="c-name">${ownerName}</div>
+				 <div class="c-role">${ownerRole}</div>
+			 </div>
+		 </div>
+	 </div>
 	 <p class="asset-modal-desc">${asset.desc}</p>
 
-	 <div class="asset-modal-columns">
-		 <section class="asset-modal-block">
-			 <div class="asset-modal-kicker">Owner</div>
-			 <div class="asset-modal-owner">
-				 <div class="c-avatar">${ownerIni}</div>
-				 <div>
-					 <div class="c-name">${ownerName}</div>
-					 <div class="c-role">${ownerRole}</div>
-				 </div>
-			 </div>
-		 </section>
+	 <div class="actions asset-modal-actions">${actionsHTML}</div>
 
-		 <section class="asset-modal-block">
-			 <div class="asset-modal-kicker">Key Tech Stack</div>
-			 <div class="tags">${tagsHTML || '<span class="tag">TBD</span>'}</div>
-		 </section>
-	 </div>
-
-	 <section class="asset-modal-block">
-		 <div class="asset-modal-kicker">About This Asset</div>
-		 <p class="asset-modal-placeholder">
-			 Placeholder: expand with use cases, architecture, data flows, known limitations, and expected business impact.
-		 </p>
+	 <section class="asset-modal-block asset-modal-tech-stack-block">
+		 <div class="asset-modal-kicker">Key Tech Stack</div>
+		 ${techStackHTML}
 	 </section>
 
-	 <div class="actions asset-modal-actions">${actionsHTML}</div>
+	 <section class="asset-modal-block">
+		 <div class="asset-modal-kicker">More About This Asset</div>
+		 <p class="asset-modal-placeholder">
+			 ${asset.moreAbout || 'Placeholder: expand with use cases, architecture, data flows, known limitations, and expected business impact.'}
+		 </p>
+	 </section>
 
 	 <div class="card-foot asset-modal-foot">
 		 <div class="c-ts">Last updated ${asset.updated || 'TBD'}</div>
