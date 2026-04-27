@@ -100,14 +100,14 @@ const ASSETS = [
 ];
 
 const CAPS = [
- { icon: "psychology", lbl: "Generative AI", desc: "GPT-4o, Claude, Gemini — text, image & code generation", color: "#33CE2A" },
- { icon: "smart_toy", lbl: "Agentic AI", desc: "Autonomous agents, multi-agent orchestration, tool use", color: "#1B2FDB" },
- { icon: "cloud", lbl: "Azure Cloud", desc: "Azure OpenAI, Cognitive Services, ML Studio, Functions", color: "#079592" },
- { icon: "code", lbl: "Python Ecosystem", desc: "LangChain, FastAPI, Pandas, Scikit-learn, PyTorch", color: "#F8570E" },
- { icon: "hub", lbl: "RAG & Search", desc: "Vector databases, semantic search, knowledge retrieval", color: "#0AC4B4" },
- { icon: "precision_manufacturing",lbl: "Automation", desc: "RPA, workflow orchestration, intelligent process mining", color: "#FF01B0" },
- { icon: "analytics", lbl: "Data & Analytics", desc: "Real-time dashboards, predictive modelling, anomaly detection", color: "#6E7CF6" },
- { icon: "security", lbl: "AI Safety", desc: "Guardrails, content filtering, responsible AI frameworks", color: "#00F900" }
+ { icon: "psychology", lbl: "Generative AI", desc: "GPT-4o, Claude, Gemini — text, image & code generation", color: "#33CE2A", iconFile: "technology.svg" },
+ { icon: "smart_toy", lbl: "Agentic AI", desc: "Autonomous agents, multi-agent orchestration, tool use", color: "#1B2FDB", iconFile: "problem_solving.svg" },
+ { icon: "cloud", lbl: "Azure Cloud", desc: "Azure OpenAI, Cognitive Services, ML Studio, Functions", color: "#079592", iconFile: "scaling.svg" },
+ { icon: "code", lbl: "Python Ecosystem", desc: "LangChain, FastAPI, Pandas, Scikit-learn, PyTorch", color: "#F8570E", iconFile: "Development_and_retention.svg" },
+ { icon: "hub", lbl: "RAG & Search", desc: "Vector databases, semantic search, knowledge retrieval", color: "#0AC4B4", iconFile: "Content_asset_management.svg" },
+ { icon: "precision_manufacturing",lbl: "Automation", desc: "RPA, workflow orchestration, intelligent process mining", color: "#FF01B0", iconFile: "Organisation_activation.svg" },
+ { icon: "analytics", lbl: "Data & Analytics", desc: "Real-time dashboards, predictive modelling, anomaly detection", color: "#6E7CF6", iconFile: "finance.svg" },
+ { icon: "security", lbl: "AI Safety", desc: "Guardrails, content filtering, responsible AI frameworks", color: "#00F900", iconFile: "community.svg" }
 ];
 
 function buildActionLinks(links) {
@@ -277,12 +277,16 @@ function initAssetModal() {
 function renderCaps() {
  const grid = document.getElementById('capGrid');
  CAPS.forEach((c, i) => {
+ const iconHTML = c.iconFile
+ ? `<img class="cap-icon-img" src="assets/Icons/${encodeURIComponent(c.iconFile)}" alt="${c.lbl} icon" loading="lazy"/>`
+ : `<span class="material-symbols-outlined" style="font-size:1.8rem;color:${c.color}">${c.icon}</span>`;
+
  const el = document.createElement('div');
  el.className = 'cap-card';
  el.style.transitionDelay = `${i * 0.05}s`;
  el.innerHTML = `
  <div class="card-glow"></div>
- <div class="cap-icon"><span class="material-symbols-outlined" style="font-size:1.8rem;color:${c.color}">${c.icon}</span></div>
+ <div class="cap-icon" style="color:${c.color}">${iconHTML}</div>
  <div class="cap-lbl">${c.lbl}</div>
  <div class="cap-desc">${c.desc}</div>`;
  grid.appendChild(el);

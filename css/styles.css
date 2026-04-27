@@ -437,7 +437,24 @@ body::before {
 .cap-card:hover { border-color: var(--border1); transform: translateY(-3px); }
 .cap-card .card-glow { opacity: 0; transition: opacity .4s; }
 .cap-card:hover .card-glow { opacity: 1; }
-.cap-icon  { font-size: 1.7rem; margin-bottom: .65rem; }
+.cap-icon  {
+  width: 52px;
+  height: 52px;
+  margin-bottom: .7rem;
+  border-radius: 10px;
+  border: 1px solid var(--border0);
+  background: rgba(0,0,0,.25);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.cap-icon .material-symbols-outlined { color: currentColor; }
+.cap-icon-img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: drop-shadow(0 0 10px rgba(51,206,42,.18));
+}
 .cap-lbl   { font-family: 'frogSerif', serif; font-weight: 600; font-size: .95rem; margin-bottom: .4rem; }
 .cap-desc  { font-size: .78rem; color: var(--text2); line-height: 1.6; }
 
