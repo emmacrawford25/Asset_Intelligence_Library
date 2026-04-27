@@ -100,14 +100,14 @@ const ASSETS = [
 ];
 
 const CAPS = [
- { icon: "psychology", lbl: "Generative AI", desc: "GPT-4o, Claude, Gemini — text, image & code generation", color: "#ec4899" },
- { icon: "smart_toy", lbl: "Agentic AI", desc: "Autonomous agents, multi-agent orchestration, tool use", color: "#a78bfa" },
- { icon: "cloud", lbl: "Azure Cloud", desc: "Azure OpenAI, Cognitive Services, ML Studio, Functions", color: "#60a5fa" },
- { icon: "code", lbl: "Python Ecosystem", desc: "LangChain, FastAPI, Pandas, Scikit-learn, PyTorch", color: "#fbbf24" },
- { icon: "hub", lbl: "RAG & Search", desc: "Vector databases, semantic search, knowledge retrieval", color: "#34d399" },
- { icon: "precision_manufacturing",lbl: "Automation", desc: "RPA, workflow orchestration, intelligent process mining", color: "#f472b6" },
- { icon: "analytics", lbl: "Data & Analytics", desc: "Real-time dashboards, predictive modelling, anomaly detection", color: "#22d3ee" },
- { icon: "security", lbl: "AI Safety", desc: "Guardrails, content filtering, responsible AI frameworks", color: "#fb923c" }
+ { icon: "psychology", lbl: "Generative AI", desc: "GPT-4o, Claude, Gemini — text, image & code generation", color: "#33CE2A" },
+ { icon: "smart_toy", lbl: "Agentic AI", desc: "Autonomous agents, multi-agent orchestration, tool use", color: "#1B2FDB" },
+ { icon: "cloud", lbl: "Azure Cloud", desc: "Azure OpenAI, Cognitive Services, ML Studio, Functions", color: "#079592" },
+ { icon: "code", lbl: "Python Ecosystem", desc: "LangChain, FastAPI, Pandas, Scikit-learn, PyTorch", color: "#F8570E" },
+ { icon: "hub", lbl: "RAG & Search", desc: "Vector databases, semantic search, knowledge retrieval", color: "#0AC4B4" },
+ { icon: "precision_manufacturing",lbl: "Automation", desc: "RPA, workflow orchestration, intelligent process mining", color: "#FF01B0" },
+ { icon: "analytics", lbl: "Data & Analytics", desc: "Real-time dashboards, predictive modelling, anomaly detection", color: "#6E7CF6" },
+ { icon: "security", lbl: "AI Safety", desc: "Guardrails, content filtering, responsible AI frameworks", color: "#00F900" }
 ];
 
 function buildActionLinks(links) {
