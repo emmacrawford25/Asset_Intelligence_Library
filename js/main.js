@@ -28,8 +28,21 @@ const ASSETS = [
  desc: "Enterprise-grade chatbot with RAG architecture, grounded in proprietary knowledge bases, featuring citation tracking and hallucination guardrails.",
  category: "gen-ai", catLabel: "Gen AI", status: "live",
  img: "https://images.unsplash.com/photo-1676299081847-824916de030a?w=800&q=80",
- tags: [{ l: "GPT-4o", c: "ga" }, { l: "RAG", c: "ag" }, { l: "Azure AI Search", c: "az" }, { l: "React", c: "re" }],
- links: { demo: "#", deck: "#", video: "#" },
+ tags: [],
+ techStack: {
+ frontend: [
+ { name: "GOV.UK", logo: "assets/tech_logos/governement.webp" },
+ { name: "Node.js", logo: "assets/tech_logos/Node-Node.JS-Logo-Vector.svg-.png" }
+ ],
+ backend: [
+ { name: "Python", logo: "assets/tech_logos/python.webp" },
+ { name: "Flask", logo: "assets/tech_logos/flask-logo-png-transparent.png" },
+ { name: "OpenAI", logo: "assets/tech_logos/openai-icon.png" },
+ { name: "Microsoft Azure", logo: "assets/tech_logos/Azure-Logo.png" },
+ { name: "FAISS" }
+ ]
+ },
+ links: { demo: "https://govpolicyfrontend.yellowhill-f75bda2b.ukwest.azurecontainerapps.io/chat", deck: "https://capgemini-my.sharepoint.com/:p:/r/personal/emma_crawford_capgemini_com/Documents/Policy%20Deck.pptx?d=w94b76c9d321b4a89a91ae87afd97ec60&csf=1&web=1&e=nhJSZt", repo: "#" },
  contact: { name: "Emma Crawford", ini: "EC", role: "Senior AI Engineer" },
  updated: "2026-04-10"
  },
@@ -146,7 +159,7 @@ function buildTechStackLogosHTML(techStack, variant = 'card') {
  const items = [...(techStack.backend || []), ...(techStack.frontend || [])];
  const logos = items.map(item => `
  <div class="tech-logo-chip ${variant}">
-	 <img src="${item.logo}" alt="${item.name} logo" loading="lazy"/>
+	 ${item.logo ? `<img src="${item.logo}" alt="${item.name} logo" loading="lazy"/>` : ''}
 	 <span>${item.name}</span>
  </div>`).join('');
 
@@ -161,7 +174,7 @@ function buildTechStackLogosHTML(techStack, variant = 'card') {
  if (!items?.length) return '';
  const logos = items.map(item => `
  <div class="tech-logo-chip ${variant}">
-	 <img src="${item.logo}" alt="${item.name} logo" loading="lazy"/>
+	 ${item.logo ? `<img src="${item.logo}" alt="${item.name} logo" loading="lazy"/>` : ''}
 	 <span>${item.name}</span>
  </div>`).join('');
 
