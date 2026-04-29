@@ -174,9 +174,9 @@ body::before {
 
 /* ── HERO ── */
 .hero {
-  position: relative; min-height: 75vh;
+  position: relative; min-height: 70vh;
   display: flex; flex-direction: column; align-items: center; justify-content: center;
-  text-align: center; padding: 5rem 2rem 3rem; z-index: 2;
+  text-align: center; padding: 4.2rem 2rem 1.9rem; z-index: 2;
 }
 .hero h1 {
   font-family: 'frogSerif', serif; font-weight: 900;
@@ -196,7 +196,7 @@ body::before {
 }
 .hero-sub {
   font-size: 1.15rem; max-width: 950px;
-  line-height: 1.65; margin-bottom: 3rem;
+  line-height: 1.65; margin-bottom: 2rem;
   letter-spacing: 0.3px; font-weight: 400;
   background: linear-gradient(135deg, var(--text2) 0%, var(--p400) 50%, var(--text2) 100%);
   background-size: 300% 100%; -webkit-background-clip: text; background-clip: text;
@@ -206,7 +206,7 @@ body::before {
   0%, 100% { background-position: 0% center; }
   50% { background-position: 100% center; }
 }
-.hero-stats { display: flex; gap: 3.5rem; animation: fiu .8s ease-out .3s both; }
+.hero-stats { display: flex; gap: 3.2rem; margin-top: -.2rem; animation: fiu .8s ease-out .3s both; }
 .hs-val {
   font-family: 'frogSerif', serif; font-weight: 700; font-size: 2.4rem;
   background: linear-gradient(135deg, var(--p400), var(--cyan));
@@ -219,6 +219,16 @@ body::before {
   display: flex; flex-direction: column; align-items: center; gap: .4rem;
   animation: fiu .8s ease-out .5s both;
 }
+.scroll-ind-inline {
+  position: relative;
+  left: auto;
+  bottom: auto;
+  transform: none;
+  width: 100%;
+  margin: .35rem 0 1.35rem;
+  z-index: 2;
+  animation: fiu .8s ease-out .5s both, scrollBob 2.2s ease-in-out 1.1s infinite;
+}
 .scroll-ind span {
   font-size: .6rem; color: var(--text3);
   text-transform: uppercase; letter-spacing: .18em; font-family: 'JetBrains Mono', monospace;
@@ -226,11 +236,16 @@ body::before {
 .scroll-line {
   width: 1px; height: 38px;
   background: linear-gradient(to bottom, var(--p500), transparent);
+  transform-origin: top center;
   animation: sline 2s ease-in-out infinite;
 }
 @keyframes sline {
-  0%,100% { opacity: 1; height: 38px; }
-  50%      { opacity: .3; height: 18px; }
+  0%,100% { opacity: 1; transform: scaleY(1); }
+  50%      { opacity: .3; transform: scaleY(.48); }
+}
+@keyframes scrollBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(6px); }
 }
 @keyframes fiu {
   from { opacity: 0; transform: translateY(28px); }
@@ -264,12 +279,12 @@ body::before {
 .tok     { color: var(--green); }
 
 /* ── COMMAND BAR ── */
-.cmd-section { position: relative; z-index: 10; padding: 0 2rem; margin-bottom: 2.5rem; }
+.cmd-section { position: relative; z-index: 10; padding: 0 2rem; margin-top: -1rem; margin-bottom: 2.2rem; }
 .cmd-bar {
   max-width: 1440px; margin: 0 auto;
   background: var(--glass); backdrop-filter: blur(28px);
   border: 1px solid var(--border1); border-radius: 12px;
-  padding: .9rem 1.4rem; display: flex; align-items: center; gap: 1rem;
+  padding: .8rem 1.25rem; display: flex; align-items: center; gap: .85rem;
   transition: border-color .3s, box-shadow .3s; flex-wrap: wrap;
 }
 .cmd-bar:focus-within {
@@ -289,7 +304,7 @@ body::before {
 }
 .chips { display: flex; gap: .45rem; flex-wrap: wrap; }
 .chip {
-  padding: .3rem .8rem; border-radius: 100px;
+  padding: .28rem .72rem; border-radius: 100px;
   font-size: .68rem; font-family: 'frogSerif', serif; font-weight: 500;
   letter-spacing: .04em; cursor: pointer; transition: all .3s;
   background: rgba(51,206,42,.07); border: 1px solid var(--border0);
@@ -492,6 +507,13 @@ body::before {
 /* Card Footer */
 .card-foot { display: flex; align-items: center; justify-content: space-between; padding-top: .9rem; border-top: 1px solid var(--border0); }
 .c-contact { display: flex; align-items: center; gap: .55rem; }
+.owner-jump {
+  text-decoration: none;
+  color: inherit;
+}
+.owner-jump:hover .c-name {
+  color: var(--p300);
+}
 .c-avatar {
   width: 28px; height: 28px; border-radius: 50%;
   background: linear-gradient(135deg, var(--p600), var(--cyan));
@@ -744,6 +766,38 @@ body.modal-open { overflow: hidden; }
 .asset-modal-placeholder {
   color: var(--text2);
   line-height: 1.65;
+}
+
+.asset-modal-richtext {
+  color: var(--text2);
+}
+
+.asset-modal-richtext p {
+  margin: 0 0 .65rem;
+  line-height: 1.68;
+}
+
+.asset-modal-richtext p:last-child {
+  margin-bottom: 0;
+}
+
+.asset-modal-richtext ul {
+  margin: 0 0 .8rem;
+  padding-left: 1.05rem;
+}
+
+.asset-modal-richtext li {
+  margin-bottom: .4rem;
+  line-height: 1.62;
+}
+
+.asset-modal-richtext li:last-child {
+  margin-bottom: 0;
+}
+
+.asset-modal-richtext strong {
+  color: var(--text0);
+  font-weight: 700;
 }
 
 .asset-modal-actions {

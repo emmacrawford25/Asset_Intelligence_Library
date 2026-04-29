@@ -43,6 +43,41 @@ const ASSETS = [
  ]
  },
  links: { demo: "https://govpolicyfrontend.yellowhill-f75bda2b.ukwest.azurecontainerapps.io/chat", deck: "https://capgemini-my.sharepoint.com/:p:/r/personal/emma_crawford_capgemini_com/Documents/Policy%20Deck.pptx?d=w94b76c9d321b4a89a91ae87afd97ec60&csf=1&web=1&e=nhJSZt", repo: "#" },
+ moreAbout: `<p>The solution leverages carefully curated DEFRA-specific data, structured rules, and tailored instructions. When combined with the user's query, it generates highly contextual, precise, and aware responses.</p>
+<p><strong>Use Cases</strong></p>
+<ul>
+ <li><strong>Knowledge Search:</strong> Automates and augments the meta-analysis and discovery process usually undertaken by policy teams, rapidly creating early policy hypotheses to test in the lab.</li>
+ <li><strong>Compare, Contrast and Summarise:</strong> Automates comparative analysis across multiple policies or legislative texts to surface gaps, overlaps, and potential conflicts. Rapidly synthesises complex policy landscapes by summarising large volumes of legislation and documentation.</li>
+ <li><strong>URL Summarisation:</strong> Automates evidence synthesis from curated online sources by ingesting and summarising content directly from provided URLs. Rapidly surfaces key insights, trends, and narratives from targeted web materials to support early-stage policy exploration.</li>
+</ul>
+<p><strong>Features</strong></p>
+<ul>
+ <li>Contextual retrieval engine with similarity detection and ranking.</li>
+ <li>Query rewriting and intent detection to ensure accurate input.</li>
+ <li>Routing logic to ensure the best method is used for each query.</li>
+ <li>Citation validation and repair.</li>
+ <li>User interaction logging to support user analysis.</li>
+ <li>Evaluation workflows to ensure models are performing well.</li>
+ <li>Landing page with user instructions.</li>
+ <li>Carefully formatted chat window for easy user interaction.</li>
+ <li>GOV.UK prototype used to match the GOV.UK UI look and feel.</li>
+ <li>Chat history stored in a sidebar so users can return to previous chats.</li>
+ <li>Citations listed to show answers are supported by documentation.</li>
+</ul>
+<p><strong>Impact</strong></p>
+<p>We see this tool driving impact both for users, by deepening understanding and empowering informed engagement, and for outcomes, by shaping more targeted interventions and campaigns.</p>
+<p>The tool transforms how users engage with complex policy landscapes. By delivering context-aware responses, it empowers a wide range of users to:</p>
+<ul>
+ <li>Access accurate information instantly.</li>
+ <li>Explore policies and legislation confidently.</li>
+ <li>Learn from key insights returned during interaction.</li>
+</ul>
+<p>The tool helps shape better policy outcomes. By surfacing relevant legislation, comparing interventions, and identifying gaps, it supports:</p>
+<ul>
+ <li>Smarter campaign design.</li>
+ <li>Evidence-based interventions.</li>
+ <li>Stronger cross-policy and legislation awareness.</li>
+</ul>`,
  contact: { name: "Emma Crawford", ini: "EC", role: "Senior AI Engineer" },
  updated: "2026-04-10"
  },
@@ -128,7 +163,18 @@ const ASSETS = [
  ]
  },
  links: { demo: "https://app.powerbi.com/groups/me/reports/4e7eb987-d50c-45c8-bd73-500cc65cd37b/ReportSectionb83a6681526a520a0631?ctid=76a2ae5a-9f00-4f6b-95ed-5d33d77c4d61&experience=power-bi", deck: "https://capgemini.sharepoint.com/:p:/r/sites/frogTech/Shared%20Documents/frog%20Data/Pillars/Marketing%20%26%20PR/Make%20your%20Mark%20Awards/Make%20your%20mark%20-%20MOC.pptx?d=wd5b42e5e664546b8a06babfaed574963&csf=1&web=1&e=giaSMn", repo: "#" },
- moreAbout: "The Ministry of Culture needed a clearer, more mature view of visitor sentiment across Saudi Arabia's cultural landmarks and events. We built a tailored Voice of Customer platform that analyses 21,000+ data points from five online sources (Instagram, TikTok, Google Reviews, TripAdvisor, and X) across 30 sites over two years. A robust preprocessing pipeline tags feedback by site, enabling deep regional and location-level drill-down. Using pre-trained sentiment and emotion models, plus custom thematic analysis and GenAI-assisted workflows for translation, theme discovery, and outlier detection, we turned unstructured multilingual feedback into actionable insight. Outputs are delivered through a custom Power BI dashboard with rich filtering and embedded Copilot support, helping senior stakeholders explore trends faster and make more evidence-based decisions.",
+ moreAbout: `<p><strong>Background</strong></p>
+<p>The Ministry of Culture needed a clearer, more mature view of visitor sentiment across Saudi Arabia's cultural landmarks and events.</p>
+<p><strong>Solution</strong></p>
+<p>We built a tailored Voice of Customer platform that analyses 21,000+ data points from five online sources across 30 sites over two years.</p>
+<ul>
+ <li><strong>Sources:</strong> Instagram, TikTok, Google Reviews, TripAdvisor, and X.</li>
+ <li><strong>Data processing:</strong> A robust preprocessing pipeline tags feedback by site to enable regional and location-level drill-down.</li>
+ <li><strong>Intelligence layer:</strong> Pre-trained sentiment and emotion models, plus custom thematic analysis and GenAI-assisted workflows for translation, theme discovery, and outlier detection.</li>
+ <li><strong>Delivery:</strong> A custom Power BI dashboard with rich filtering and embedded Copilot support.</li>
+</ul>
+<p><strong>Impact</strong></p>
+<p>The platform turns unstructured multilingual feedback into actionable insight, helping senior stakeholders explore trends faster and make more evidence-based decisions.</p>`,
  contact: { name: "Emma Crawford", ini: "EC", role: "Senior AI Engineer" },
  updated: "2026-04-27"
  }
@@ -225,13 +271,13 @@ function renderAssets(list) {
  <div class="actions">${actionHTML}</div>
  ${techStackHTML}
  <div class="card-foot">
- <div class="c-contact">
+ <a href="#contact-us" class="c-contact owner-jump" aria-label="Go to contact section">
  <div class="c-avatar">${a.contact.ini}</div>
  <div>
  <div class="c-name">${a.contact.name}</div>
  <div class="c-role">${a.contact.role}</div>
  </div>
- </div>
+ </a>
  <div class="c-ts">${a.updated}</div>
  </div>
  </div>`;
@@ -246,6 +292,7 @@ function initAssetModal() {
  const closeBtn = document.getElementById('assetModalClose');
  const backdrop = document.getElementById('assetModalBackdrop');
  const grid = document.getElementById('assetsGrid');
+ const contactSection = document.getElementById('contact-us');
 
  const getAssetByElement = (el) => {
  const card = el.closest('.asset-card');
@@ -264,6 +311,10 @@ function initAssetModal() {
  const ownerRole = asset.contact?.role || 'Asset Owner';
  const ownerName = asset.contact?.name || 'TBD';
  const ownerIni = asset.contact?.ini || 'NA';
+ const moreAboutContent = asset.moreAbout || 'Placeholder: expand with use cases, architecture, data flows, known limitations, and expected business impact.';
+ const moreAboutHTML = /<[^>]+>/.test(moreAboutContent)
+ ? moreAboutContent
+ : `<p class="asset-modal-placeholder">${moreAboutContent}</p>`;
 
  modalBody.innerHTML = `
  <div class="asset-modal-hero">
@@ -277,13 +328,13 @@ function initAssetModal() {
  <div class="asset-modal-content">
 	 <div class="asset-modal-head-row">
 		 <h3 class="asset-modal-title" id="assetModalTitle">${asset.title}</h3>
-		 <div class="asset-modal-owner-inline">
+			 <a href="#contact-us" class="asset-modal-owner-inline owner-jump" aria-label="Go to contact section">
 			 <div class="c-avatar">${ownerIni}</div>
 			 <div>
 				 <div class="c-name">${ownerName}</div>
 				 <div class="c-role">${ownerRole}</div>
 			 </div>
-		 </div>
+			 </a>
 	 </div>
 	 <p class="asset-modal-desc">${asset.desc}</p>
 
@@ -296,9 +347,7 @@ function initAssetModal() {
 
 	 <section class="asset-modal-block">
 		 <div class="asset-modal-kicker">More About This Asset</div>
-		 <p class="asset-modal-placeholder">
-			 ${asset.moreAbout || 'Placeholder: expand with use cases, architecture, data flows, known limitations, and expected business impact.'}
-		 </p>
+		 <div class="asset-modal-richtext">${moreAboutHTML}</div>
 	 </section>
 
 	 <div class="card-foot asset-modal-foot">
@@ -318,8 +367,15 @@ function initAssetModal() {
  document.body.classList.remove('modal-open');
  };
 
+ const jumpToContacts = () => {
+ closeModal();
+ if (contactSection) {
+ contactSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+ }
+ };
+
  grid.addEventListener('click', (e) => {
- if (e.target.closest('.actions a')) return;
+ if (e.target.closest('.actions a, .owner-jump')) return;
  const asset = getAssetByElement(e.target);
  if (!asset) return;
  openModal(asset);
@@ -328,10 +384,18 @@ function initAssetModal() {
  grid.addEventListener('keydown', (e) => {
  const card = e.target.closest('.asset-card');
  if (!card) return;
+ if (e.target.closest('.actions a, .owner-jump')) return;
  if (e.key !== 'Enter' && e.key !== ' ') return;
  e.preventDefault();
  const asset = ASSETS.find(a => a.id === Number(card.dataset.assetId));
  openModal(asset);
+ });
+
+ document.addEventListener('click', (e) => {
+ const ownerJump = e.target.closest('.owner-jump');
+ if (!ownerJump) return;
+ e.preventDefault();
+ jumpToContacts();
  });
 
  closeBtn.addEventListener('click', closeModal);
