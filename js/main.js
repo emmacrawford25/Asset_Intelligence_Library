@@ -345,7 +345,7 @@ function initAssetModal() {
 		 ${techStackHTML}
 	 </section>
 
-	 <section class="asset-modal-block">
+	 <section class="asset-modal-block asset-modal-about-block">
 		 <div class="asset-modal-kicker">More About This Asset</div>
 		 <div class="asset-modal-richtext">${moreAboutHTML}</div>
 	 </section>
@@ -609,6 +609,57 @@ function initFeedbackCarousel() {
  setInterval(nextCard, 5000);
 }
 
+function initOutlookEmailLinks() {
+ const emailLinks = document.querySelectorAll('.email-outlook');
+
+ emailLinks.forEach(link => {
+ link.addEventListener('click', (e) => {
+ e.preventDefault();
+
+ const to = link.dataset.to;
+ const name = link.dataset.name || 'there';
+ const subject = 'Quick chat about frog Data asset';
+ const body = `Hello ${name},\n\nI have been looking at the frog Data Asset Intelligence Hub and I am particularly interested in talking more about asset [FILL IN ASSET HERE].\n\nDo you have time to meet up for a quick chat about this?\n\nMany thanks,`;
+
+ const encTo = encodeURIComponent(to);
+ const encSubject = encodeURIComponent(subject);
+ const encBody = encodeURIComponent(body);
+
+ // Try common Outlook desktop URI schemes first, then fall back to Outlook Web.
+ const appLinks = [
+ `ms-outlook://compose?to=${encTo}&subject=${encSubject}&body=${encBody}`,
+ `outlook://compose?to=${encTo}&subject=${encSubject}&body=${encBody}`,
+ `microsoft-outlook://compose?to=${encTo}&subject=${encSubject}&body=${encBody}`
+ ];
+ const webFallback = `https://outlook.office.com/mail/deeplink/compose?to=${encTo}&subject=${encSubject}&body=${encBody}`;
+
+ let launchedApp = false;
+ const onVisibilityChange = () => {
+ if (document.hidden) {
+ launchedApp = true;
+ document.removeEventListener('visibilitychange', onVisibilityChange);
+ }
+ };
+ document.addEventListener('visibilitychange', onVisibilityChange);
+
+ const tryLaunch = (url) => {
+ if (launchedApp) return;
+ window.location.href = url;
+ };
+
+ setTimeout(() => tryLaunch(appLinks[0]), 0);
+ setTimeout(() => tryLaunch(appLinks[1]), 350);
+ setTimeout(() => tryLaunch(appLinks[2]), 700);
+
+ setTimeout(() => {
+ if (launchedApp) return;
+ document.removeEventListener('visibilitychange', onVisibilityChange);
+ window.open(webFallback, '_blank', 'noopener');
+ }, 1400);
+ });
+ });
+}
+
 // ── Boot ──
 document.addEventListener('DOMContentLoaded', () => {
  initCanvas();
@@ -619,4 +670,5 @@ document.addEventListener('DOMContentLoaded', () => {
  renderCaps();
  observeCards('.contact-card');
  initFeedbackCarousel();
+ initOutlookEmailLinks();
 });

@@ -39,6 +39,22 @@
   font-display: swap;
 }
 
+@font-face {
+  font-family: 'bentonSans';
+  src: url('../assets/font/BentonSansF-Medium.otf') format('opentype');
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'bentonSansExtraLight';
+  src: url('../assets/font/BentonSansF-ExtraLight.otf') format('opentype');
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+}
+
 *,*::before,*::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 html {
@@ -50,7 +66,7 @@ html {
 body {
   background: var(--bg-void);
   color: var(--text1);
-  font-family: 'frogSerif', serif;
+  font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -147,7 +163,7 @@ body::before {
 .nav-links a {
   color: var(--text2); text-decoration: none;
   font-size: .82rem; font-weight: 500; letter-spacing: .05em;
-  text-transform: uppercase; font-family: 'frogSerif', serif;
+  text-transform: uppercase; font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif;
   transition: color .3s; position: relative;
 }
 .nav-links a::after {
@@ -163,7 +179,7 @@ body::before {
   background: linear-gradient(135deg, var(--p600), var(--p700));
   border: 1px solid var(--border2); border-radius: 6px;
   color: #fff !important; font-size: .78rem; cursor: pointer;
-  font-family: 'frogSerif', serif; font-weight: 600;
+  font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif; font-weight: 600;
   transition: all .3s; text-decoration: none;
 }
 .nav-btn:hover {
@@ -305,7 +321,7 @@ body::before {
 .chips { display: flex; gap: .45rem; flex-wrap: wrap; }
 .chip {
   padding: .28rem .72rem; border-radius: 100px;
-  font-size: .68rem; font-family: 'frogSerif', serif; font-weight: 500;
+  font-size: .68rem; font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif; font-weight: 500;
   letter-spacing: .04em; cursor: pointer; transition: all .3s;
   background: rgba(51,206,42,.07); border: 1px solid var(--border0);
   color: var(--text2); text-transform: uppercase; white-space: nowrap; user-select: none;
@@ -369,7 +385,7 @@ body::before {
   position: absolute; top: 1rem; left: 1rem;
   padding: .28rem .65rem; background: rgba(51,206,42,.28); backdrop-filter: blur(8px);
   border: 1px solid rgba(51,206,42,.28); border-radius: 100px;
-  font-size: .62rem; font-family: 'frogSerif', serif; font-weight: 600;
+  font-size: .62rem; font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif; font-weight: 600;
   text-transform: uppercase; letter-spacing: .08em; color: var(--p300);
 }
 .card-stat {
@@ -494,7 +510,7 @@ body::before {
 .actions { display: flex; gap: .45rem; margin-bottom: 1.15rem; flex-wrap: wrap; }
 .act {
   display: inline-flex; align-items: center; gap: .35rem;
-  padding: .42rem .8rem; font-size: .68rem; font-family: 'frogSerif', serif;
+  padding: .42rem .8rem; font-size: .68rem; font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 600; text-decoration: none; border-radius: 6px; transition: all .3s;
   cursor: pointer; text-transform: uppercase; letter-spacing: .04em; border: none; background: none;
 }
@@ -518,10 +534,10 @@ body::before {
   width: 28px; height: 28px; border-radius: 50%;
   background: linear-gradient(135deg, var(--p600), var(--cyan));
   display: flex; align-items: center; justify-content: center;
-  font-size: .62rem; font-weight: 700; font-family: 'frogSerif', serif;
+  font-size: .62rem; font-weight: 700; font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif;
   color: #fff; flex-shrink: 0;
 }
-.c-name { font-size: .74rem; font-weight: 500; color: var(--text1); font-family: 'frogSerif', serif; }
+.c-name { font-size: .74rem; font-weight: 500; color: var(--text1); font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif; }
 .c-role { font-size: .62rem; color: var(--text3); }
 .c-ts   { font-size: .6rem; color: var(--text3); font-family: 'JetBrains Mono', monospace; }
 
@@ -577,7 +593,7 @@ body::before {
 .footer { position: relative; z-index: 2; border-top: 1px solid var(--border0); padding: 2.5rem 2rem; }
 .footer-inner { max-width: 1440px; margin: 0 auto; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; gap: 0.3rem; }
 .footer-brand {
-  font-family: 'frogSerif', serif; font-weight: 600; font-size: 0.85rem;
+  font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif; font-weight: 600; font-size: 0.85rem;
   color: var(--text1);
 }
 .footer-copy { font-size: 0.7rem; color: var(--text3); }
@@ -683,7 +699,7 @@ body.modal-open { overflow: hidden; }
   border: 1px solid rgba(51,206,42,.3);
   color: var(--p300);
   font-size: .68rem;
-  font-family: 'frogSerif', serif;
+  font-family: 'bentonSans', 'Helvetica Neue', Arial, sans-serif;
   font-weight: 600;
   text-transform: uppercase;
   letter-spacing: .08em;
@@ -757,6 +773,13 @@ body.modal-open { overflow: hidden; }
   text-transform: uppercase;
   color: var(--p400);
   margin-bottom: .7rem;
+}
+.asset-modal-about-block .asset-modal-kicker,
+.asset-modal-about-block .asset-modal-placeholder,
+.asset-modal-about-block .asset-modal-richtext,
+.asset-modal-about-block .asset-modal-richtext p,
+.asset-modal-about-block .asset-modal-richtext li {
+  font-family: 'bentonSansExtraLight', 'bentonSans', 'Helvetica Neue', Arial, sans-serif;
 }
 .asset-modal-owner {
   display: flex;
